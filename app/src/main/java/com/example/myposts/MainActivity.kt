@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     var posts=response.body()
                     Toast.makeText(baseContext,"${posts!!.size} posts", Toast.LENGTH_LONG ).show()
-                    var displayPostsRvAdapter=displayPostsRvAdapter(baseContext,posts)
+                    var displayPostsRvAdapter=displayPostsRvAdapter(posts)
                     binding.rvDisplay.layoutManager=LinearLayoutManager(baseContext)
                     binding.rvDisplay.adapter=displayPostsRvAdapter
                 }
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
 
             }
 
